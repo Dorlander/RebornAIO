@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Color = System.Drawing.Color;
 using LeagueSharp;
 using LeagueSharp.Common;
@@ -20,13 +24,13 @@ namespace RandomUlt
 
         private static void Game_OnGameLoad(EventArgs args)
         {
-            config = new Menu("RandomUlt Beta", "RandomUlt Beta", true);
+            config = new Menu("RandomUlt", "RandomUlt", true);
             Menu RandomUltM = new Menu("Options", "Options");
             positions = new LastPositions(RandomUltM);
             config.AddSubMenu(RandomUltM);
             config.AddItem(new MenuItem("RandomUlt ", "by Soresu"));
             config.AddToMainMenu();
-            Notifications.AddNotification(new Notification("RandomUlt by Soresu", 3000, true).SetTextColor(Color.Peru));
+            Notifications.AddNotification(new Notification("RandomUlt", 3000, true).SetTextColor(Color.Peru));
         }
     }
 }

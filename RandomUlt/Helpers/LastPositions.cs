@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using LeagueSharp;
 using LeagueSharp.Common;
 using SharpDX;
@@ -129,14 +130,14 @@ namespace RandomUlt.Helpers
 
         private void Obj_AI_Base_OnTeleport(Obj_AI_Base sender, GameObjectTeleportEventArgs args)
         {
-            if (!(sender is Obj_AI_Hero unit) || !unit.IsValid || unit.IsAlly)
+            var unit = sender as Obj_AI_Hero;
+
+            if (unit == null || !unit.IsValid || unit.IsAlly)
             {
                 return;
             }
 
-#pragma warning disable CS0618 // Тип или член устарел
             var recall = Packet.S2C.Teleport.Decoded(unit, args);
-#pragma warning restore CS0618 // Тип или член устарел
             Enemies.Find(x => x.Player.NetworkId == recall.UnitNetworkId).RecallData.Update(recall);
         }
 
@@ -156,12 +157,8 @@ namespace RandomUlt.Helpers
                 Enemies.Where(
                     x =>
                         x.Player.IsValid<Obj_AI_Hero>() && !x.Player.IsDead &&
-#pragma warning disable CS0618 // Тип или член устарел
                         x.RecallData.Recall.Status == Packet.S2C.Teleport.Status.Start &&
-#pragma warning restore CS0618 // Тип или член устарел
-#pragma warning disable CS0618 // Тип или член устарел
                         x.RecallData.Recall.Type == Packet.S2C.Teleport.Type.Recall)
-#pragma warning restore CS0618 // Тип или член устарел
                     .OrderBy(x => x.RecallData.GetRecallTime()))
             {
                 var trueDist = Math.Abs(enemy.LastSeen - enemy.RecallData.RecallStartTime) / 1000 *
@@ -177,7 +174,7 @@ namespace RandomUlt.Helpers
                 {
                     dist = 50;
                 }
-                var line = Getpos(enemy, trueDist);
+                var line = getpos(enemy, trueDist);
                 Vector3 pos = line;
                 if (enemy.Player.IsVisible)
                 {
@@ -219,7 +216,7 @@ namespace RandomUlt.Helpers
                 var possibleTargets =
                     Enemies.Where(
                         x =>
-                            !x.Player.IsDead && Checkdmg(x.Player, x.Player.Position) &&
+                            !x.Player.IsDead && checkdmg(x.Player, x.Player.Position) &&
                             (Environment.TickCount - x.LastSeen < 4000) && x.Player.CountAlliesInRange(1000) < 1 &&
                             UltTime(x.Player.Position) <
                             9500 - configMenu.Item("waitBeforeUlt").GetValue<Slider>().Value);
@@ -231,10 +228,10 @@ namespace RandomUlt.Helpers
             }
         }
 
-        private Vector3 Getpos(Positions enemy, float dist)
+        private Vector3 getpos(Positions enemy, float dist)
         {
-            float time = (enemy.LastSeen - enemy.RecallData.RecallStartTime) / 1000;
-            Vector3 line = enemy.Player.Position.Extend(enemy.predictedpos, dist);
+            var time = (enemy.LastSeen - enemy.RecallData.RecallStartTime) / 1000;
+            var line = enemy.Player.Position.Extend(enemy.predictedpos, dist);
             if (enemy.Player.Position.Distance(enemy.predictedpos) < dist &&
                 ((time < 2 ||
                   enemy.Player.Position.Distance(enemy.predictedpos) > enemy.Player.Position.Distance(line) * 0.70f)))
@@ -246,7 +243,7 @@ namespace RandomUlt.Helpers
 
         private void Game_OnUpdate(EventArgs args)
         {
-            float time = Environment.TickCount;
+            float time = System.Environment.TickCount;
             foreach (Positions enemyInfo in
                 Enemies.Where(x => x.Player.IsVisible && !x.Player.IsDead && x.Player.IsValidTarget()))
             {
@@ -305,12 +302,8 @@ namespace RandomUlt.Helpers
                     x =>
                         x.Player.IsValid<Obj_AI_Hero>() && !x.Player.IsDead &&
                         !configMenu.Item(x.Player.ChampionName + "DontUltRandomUlt").GetValue<bool>() &&
-#pragma warning disable CS0618 // Тип или член устарел
                         x.RecallData.Recall.Status == Packet.S2C.Teleport.Status.Start &&
-#pragma warning restore CS0618 // Тип или член устарел
-#pragma warning disable CS0618 // Тип или член устарел
                         x.RecallData.Recall.Type == Packet.S2C.Teleport.Type.Recall)
-#pragma warning restore CS0618 // Тип или член устарел
                     .OrderBy(x => x.RecallData.GetRecallTime()))
             {
                 if (CheckBuffs(enemy.Player) || CheckBaseUlt(enemy.RecallData.GetRecallCountdown()) ||
@@ -323,7 +316,7 @@ namespace RandomUlt.Helpers
                            enemy.Player.MoveSpeed / 3;
                 var trueDist = Math.Abs(enemy.LastSeen - enemy.RecallData.RecallStartTime) / 1000 *
                                enemy.Player.MoveSpeed;
-                var line = Getpos(enemy, dist);
+                var line = getpos(enemy, dist);
                 switch (HitChance)
                 {
                     case 1:
@@ -392,7 +385,7 @@ namespace RandomUlt.Helpers
                     {
                         continue;
                     }
-                    Kill(enemy, new Vector3(pos.X, pos.Y, 0));
+                    kill(enemy, new Vector3(pos.X, pos.Y, 0));
                 }
             }
         }
@@ -481,19 +474,19 @@ namespace RandomUlt.Helpers
             }
         }
 
-        private void Kill(Positions positions, Vector3 pos)
+        private void kill(Positions positions, Vector3 pos)
         {
             if (R.IsReady() && pos.Distance(positions.Player.Position) < 1200 &&
                 ObjectManager.Get<Obj_AI_Hero>()
                     .Count(o => o.IsAlly && o.Distance(pos) < configMenu.Item("Alliesrange").GetValue<Slider>().Value) <
                 1)
             {
-                if (Checkdmg(positions.Player, pos) && UltTime(pos) < positions.RecallData.GetRecallTime() &&
-                    !IsColliding(pos))
+                if (checkdmg(positions.Player, pos) && UltTime(pos) < positions.RecallData.GetRecallTime() &&
+                    !isColliding(pos))
                 {
                     if (player.ChampionName == "Xerath")
                     {
-                        XerathUlt(positions, pos);
+                        xerathUlt(positions, pos);
                     }
                     R.Cast(pos);
                     if (player.ChampionName == "Draven" && configMenu.Item("CallBack").GetValue<bool>())
@@ -504,7 +497,7 @@ namespace RandomUlt.Helpers
             }
         }
 
-        private void XerathUlt(Positions positions, Vector3 pos = default)
+        private void xerathUlt(Positions positions, Vector3 pos = default(Vector3))
         {
             if (pos != Vector3.Zero)
             {
@@ -534,7 +527,7 @@ namespace RandomUlt.Helpers
             }
         }
 
-        private bool IsColliding(Vector3 pos)
+        private bool isColliding(Vector3 pos)
         {
             if (player.ChampionName == "Draven" && player.ChampionName == "Ashe" && player.ChampionName == "Jinx")
             {
@@ -627,7 +620,7 @@ namespace RandomUlt.Helpers
             return list;
         }
 
-        private bool Checkdmg(Obj_AI_Hero target, Vector3 pos)
+        private bool checkdmg(Obj_AI_Hero target, Vector3 pos)
         {
             var dmg = R.GetDamage(target);
             float bonuShieldNearTowers = 0f;
@@ -647,7 +640,7 @@ namespace RandomUlt.Helpers
             {
                 if (configMenu.Item("Backdamage").GetValue<bool>())
                 {
-                    dmg *= 2;
+                    dmg = dmg * 2;
                 }
                 if (dmg * (collision ? 0.8f : 1f) - 10 - bonuShieldNearTowers > target.Health)
                 {
@@ -704,12 +697,8 @@ namespace RandomUlt.Helpers
     internal class RecallData
     {
         public Positions Positions;
-#pragma warning disable CS0618 // Тип или член устарел
         public Packet.S2C.Teleport.Struct Recall;
-#pragma warning restore CS0618 // Тип или член устарел
-#pragma warning disable CS0618 // Тип или член устарел
         public Packet.S2C.Teleport.Struct Aborted;
-#pragma warning restore CS0618 // Тип или член устарел
         public float AbortTime;
         public float RecallStartTime;
         public bool started;
@@ -718,18 +707,15 @@ namespace RandomUlt.Helpers
         public RecallData(Positions positions)
         {
             Positions = positions;
-#pragma warning disable CS0618 // Тип или член устарел
             Recall = new Packet.S2C.Teleport.Struct(
-#pragma warning restore CS0618 // Тип или член устарел
-#pragma warning disable CS0618 // Тип или член устарел
                 Positions.Player.NetworkId, Packet.S2C.Teleport.Status.Unknown, Packet.S2C.Teleport.Type.Unknown, 0);
-#pragma warning restore CS0618 // Тип или член устарел
         }
 
         public float GetRecallTime()
         {
-            float time = Environment.TickCount;
-            float countdown;
+            float time = System.Environment.TickCount;
+            float countdown = 0;
+
             if (time - AbortTime < 2000)
             {
                 countdown = Aborted.Duration - (AbortTime - Aborted.Start);
@@ -749,7 +735,8 @@ namespace RandomUlt.Helpers
         public float GetRecallCountdown()
         {
             float time = Environment.TickCount;
-            float countdown;
+            float countdown = 0;
+
             if (time - AbortTime < FADEOUT_TIME)
             {
                 countdown = Aborted.Duration - (AbortTime - Aborted.Start);
@@ -766,35 +753,27 @@ namespace RandomUlt.Helpers
             return countdown < 0 ? 0 : countdown;
         }
 
-#pragma warning disable CS0618 // Тип или член устарел
         public Positions Update(Packet.S2C.Teleport.Struct newData)
-#pragma warning restore CS0618 // Тип или член устарел
         {
-#pragma warning disable CS0618 // Тип или член устарел
             if (newData.Type == Packet.S2C.Teleport.Type.Recall && newData.Status == Packet.S2C.Teleport.Status.Abort)
-#pragma warning restore CS0618 // Тип или член устарел
             {
                 Aborted = Recall;
-                AbortTime = Environment.TickCount;
+                AbortTime = System.Environment.TickCount;
                 started = false;
             }
             else
             {
                 AbortTime = 0;
             }
-#pragma warning disable CS0618 // Тип или член устарел
             if (newData.Type == Packet.S2C.Teleport.Type.Recall && newData.Status == Packet.S2C.Teleport.Status.Finish)
-#pragma warning restore CS0618 // Тип или член устарел
             {
                 started = false;
             }
-#pragma warning disable CS0618 // Тип или член устарел
             if (newData.Type == Packet.S2C.Teleport.Type.Recall && newData.Status == Packet.S2C.Teleport.Status.Start)
-#pragma warning restore CS0618 // Тип или член устарел
             {
                 if (!started)
                 {
-                    RecallStartTime = Environment.TickCount;
+                    RecallStartTime = System.Environment.TickCount;
                 }
                 started = true;
             }
