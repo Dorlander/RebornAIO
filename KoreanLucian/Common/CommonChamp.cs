@@ -19,7 +19,7 @@
             commonEvolveUltimate = new CommonEvolveUltimate();
         }
 
-        private  CommonEvolveUltimate commonEvolveUltimate;
+        private CommonEvolveUltimate commonEvolveUltimate;
 
         protected CommonDamageDrawing DrawDamage { get; set; }
 

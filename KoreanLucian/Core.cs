@@ -1,9 +1,6 @@
 ﻿namespace KoreanLucian
 {
-<<<<<<< HEAD
-=======
     using System;
->>>>>>> ec4686f6e389b77e9ccdee06b6c6e31e8a0e9431
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,10 +8,7 @@
 
     using LeagueSharp;
     using LeagueSharp.Common;
-<<<<<<< HEAD
-=======
     using LeagueSharp.Common.Data;
->>>>>>> ec4686f6e389b77e9ccdee06b6c6e31e8a0e9431
 
     using ItemData = LeagueSharp.Common.Data.ItemData;
 
@@ -299,15 +293,11 @@
         public override void ComboMode()
         {
             //IDK why but i need this code since the patch 5.17
-<<<<<<< HEAD
-            
-=======
             if (champion.Player.IsChannelingImportantSpell())
             {
                 Orbwalking.MoveTo(Game.CursorPos);
                 return;
             }
->>>>>>> ec4686f6e389b77e9ccdee06b6c6e31e8a0e9431
 
             Obj_AI_Hero target;
 
@@ -356,13 +346,9 @@
                 }
             }
 
-<<<<<<< HEAD
-            if (E.UseOnCombo && !CheckPassive() && E.IsReady() && E.CanCast() && (!KoreanUtils.GetParamBool(champion.MainMenu, "dashmode") || (KoreanUtils.GetParamBool(champion.MainMenu, "dashmode") && lucian.semiAutomaticE.Holding)))
-=======
             if (E.UseOnCombo && !CheckPassive() && E.IsReady() && E.CanCast()
                 && (!KoreanUtils.GetParamBool(champion.MainMenu, "dashmode")
                     || (KoreanUtils.GetParamBool(champion.MainMenu, "dashmode") && lucian.semiAutomaticE.Holding)))
->>>>>>> ec4686f6e389b77e9ccdee06b6c6e31e8a0e9431
             {
                 target = TargetSelector.GetTarget(
                     E.Range + Orbwalking.GetRealAutoAttackRange(champion.Player) - 25f,

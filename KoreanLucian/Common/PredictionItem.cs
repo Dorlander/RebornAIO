@@ -119,7 +119,7 @@
                 return;
             }
 
-            if (Target.IsStunned || Target.IsWindingUp || Target.IsImmovable || Target.IsRooted || Target.IsZombie)
+            if (Target.IsStunned || Target.IsRooted || Target.IsImmovable || Target.IsZombie || Target.IsWindingUp)
             {
                 AddImmovable();
             }
