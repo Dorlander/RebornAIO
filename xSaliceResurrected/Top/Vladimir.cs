@@ -10,6 +10,27 @@ namespace xSaliceResurrected.Top
 {
     class Vladimir : Champion
     {
+        public float ChargePercentage
+        {
+            get
+            {
+                if (IsCharging)
+                {
+                    return (Utils.TickCount - E.LastCastAttemptT) / 1000f;
+                }
+
+                return 0f;
+            }
+        }
+
+        public bool IsCharging
+        {
+            get
+            {
+                return E.LastCastAttemptT + 300 > Utils.TickCount || Player.HasBuff("VladimirE");
+            }
+        }
+        
         public Vladimir()
         {
             LoadSpell();
@@ -35,7 +56,6 @@ namespace xSaliceResurrected.Top
                 key.AddItem(new MenuItem("HarassActiveT", "Harass (toggle)!", true).SetValue(new KeyBind("N".ToCharArray()[0], KeyBindType.Toggle)));
                 key.AddItem(new MenuItem("LaneClearActive", "Farm!", true).SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
                 key.AddItem(new MenuItem("LastHitKey", "Last Hit!", true).SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
-                key.AddItem(new MenuItem("StackE", "StackE (toggle)!", true).SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Toggle)));
                 //add to menu
                 menu.AddSubMenu(key);
             }
@@ -196,13 +216,25 @@ namespace xSaliceResurrected.Top
                 if (useQ && Q.IsReady() && target.IsValidTarget(Q.Range))
                     Q.Cast(target);
 
-                if (useE && E.IsReady() && target.IsValidTarget(E.Range))
-                    E.Cast();
+                if (useE && E.IsReady())
+                {
+                    if (target.Health < E.GetDamage(target) && target.IsValidTarget(E.Range))
+                        StartCharging();
+
+                    else if (target.IsValidTarget(E.Range - 150))
+                        StartCharging();
+                }
             }
             else
             {
-                if (useE && E.IsReady() && target.IsValidTarget(E.Range))
-                    E.Cast();
+                if (useE && E.IsReady())
+                {
+                    if (target.Health < E.GetDamage(target) && target.IsValidTarget(E.Range))
+                        StartCharging();
+
+                    else if (target.IsValidTarget(E.Range - 150))
+                        StartCharging();
+                }
 
                 if (useQ && Q.IsReady() && target.IsValidTarget(Q.Range))
                     Q.Cast(target);
@@ -248,11 +280,20 @@ namespace xSaliceResurrected.Top
             if (useQ)
                 LastHit();
 
-            if (useE && E.IsReady())
+            if (useE)
             {
-                if (rangedMinionsE.Count > 1)
-                    E.Cast();
+                if (rangedMinionsE.Count > 1 && E.IsReady())
+                {
+                    StartCharging();
+                }
 
+                if (IsCharging && rangedMinionsE.Count != 0)
+                {
+                    if (ChargePercentage >= 0.9)
+                    {
+                        CastE();
+                    }
+                }
             }
         }
 
@@ -260,12 +301,12 @@ namespace xSaliceResurrected.Top
         {
             foreach (Obj_AI_Hero target in ObjectManager.Get<Obj_AI_Hero>().Where(x => x.IsValidTarget(1300)).OrderByDescending(GetComboDamage))
             {
-                if (Player.Distance(target.ServerPosition) <= E.Range && Player.GetSpellDamage(target, SpellSlot.Q) + Player.GetSpellDamage(target, SpellSlot.E) > target.Health && Q.IsReady() && E.IsReady())
+                /*if (Player.Distance(target.ServerPosition) <= E.Range && Player.GetSpellDamage(target, SpellSlot.Q) + Player.GetSpellDamage(target, SpellSlot.E) > target.Health && Q.IsReady() && E.IsReady())
                 {
                     E.Cast();
                     Q.Cast(target);
                     return;
-                }
+                }*/
 
                 if (Player.Distance(target.ServerPosition) <= Q.Range && Player.GetSpellDamage(target, SpellSlot.Q) > target.Health && Q.IsReady())
                 {
@@ -289,6 +330,39 @@ namespace xSaliceResurrected.Top
 
         protected override void Game_OnGameUpdate(EventArgs args)
         {
+            if (IsCharging)
+            {
+                if (menu.Item("ComboActive", true).GetValue<KeyBind>().Active ||
+                    menu.Item("HarassActive", true).GetValue<KeyBind>().Active ||
+                    menu.Item("HarassActiveT", true).GetValue<KeyBind>().Active)
+                {
+                    var target = E.GetTarget();
+
+                    if (target == null && 
+                        Player.CountEnemiesInRange(E.Range + 100) == 0)
+                    {
+                        //no target in e range, release E early
+                        CastE();
+                    }
+
+                    if (target != null)
+                    {
+                        if (target.Distance(Player) / E.Range > 0.95)
+                        {
+                            //target at the edge of E range
+                            CastE();
+                        }
+
+                        else if (ChargePercentage >= 0.9)
+                        {
+                            CastE();
+                        }
+                    }
+
+                    return;
+                }
+            }
+
             if (menu.Item("smartKS", true).GetValue<bool>())
                 CheckKs();
 
@@ -310,15 +384,6 @@ namespace xSaliceResurrected.Top
                 if (menu.Item("HarassActiveT", true).GetValue<KeyBind>().Active)
                     Harass();
             }
-
-            if (Player.IsRecalling())
-                return;
-
-            if (menu.Item("StackE", true).GetValue<KeyBind>().Active)
-            {
-                if (E.IsReady() && Utils.TickCount - E.LastCastAttemptT >= 9900)
-                    E.Cast();
-            }
         }
 
         protected override void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base unit, GameObjectProcessSpellCastEventArgs args)
@@ -326,9 +391,9 @@ namespace xSaliceResurrected.Top
             if (!unit.IsMe)
                 return;
 
-            if (args.SData.Name == "VladimirTidesofBlood")
+            if (args.SData.Name == "VladimirE")
             {
-                E.LastCastAttemptT = Utils.TickCount + 250;
+                E.LastCastAttemptT = Utils.TickCount;
             }
         }
 
@@ -356,6 +421,35 @@ namespace xSaliceResurrected.Top
             if (menu.Item("Draw_R", true).GetValue<bool>())
                 if (R.Level > 0)
                     Render.Circle.DrawCircle(Player.Position, R.Range, R.IsReady() ? Color.Green : Color.Red);
+        }
+
+        private bool StartCharging()
+        {
+            if (E.IsReady())
+            {
+                if (!IsCharging)
+                {
+                    E.LastCastAttemptT = Utils.TickCount;
+                    Player.Spellbook.UpdateChargedSpell(SpellSlot.E, SharpDX.Vector3.Zero, false);
+                }
+            }
+
+            return false;
+        }
+
+        private bool CastE(bool fastCast = false)
+        {
+            if (fastCast)
+            {
+                return E.Cast();
+            }
+
+            if (IsCharging)
+            {
+                return Player.Spellbook.UpdateChargedSpell(SpellSlot.E, SharpDX.Vector3.Zero, true);
+            }
+
+            return false;
         }
     }
 }
