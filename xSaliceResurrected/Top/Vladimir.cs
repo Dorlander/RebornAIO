@@ -161,7 +161,7 @@ namespace xSaliceResurrected.Top
                 comboDamage += Player.GetSpellDamage(target, SpellSlot.R);
                 comboDamage += comboDamage * 1.12;
             }
-            else if (target.HasBuffIn("vladimirhemoplaguedebuff", 0.00f, true))
+            else if (target.HasBuffIn("vladimirhemoplaguedebuff", 3.00f, true))
             {
                 comboDamage += comboDamage * 1.12;
             }
