@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AB3F7D6-E88E-4A02-9426-B3771253CBDE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VayneHunter_Reborn</RootNamespace>
+    <AssemblyName>VayneHunter Reborn</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <OutputPath>bin\Release</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="clipper_library">
+      <HintPath>..\..\LeagueSharp\Kernel\clipper_library.dll</HintPath>
+    </Reference>
+    <Reference Include="LeagueSharp">
+      <HintPath>..\..\LeagueSharp\Kernel\LeagueSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LeagueSharp.Common">
+      <HintPath>..\..\LeagueSharp\Kernel\LeagueSharp.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\LeagueSharp\Kernel\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\..\LeagueSharp\Kernel\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="External\Activator\Activator.cs" />
+    <Compile Include="External\Activator\ActivatorEnums.cs" />
+    <Compile Include="External\Activator\ActivatorSpells\Barrier.cs" />
+    <Compile Include="External\Activator\ActivatorSpells\Heal.cs" />
+    <Compile Include="External\Activator\ActivatorSpells\Ignite.cs" />
+    <Compile Include="External\Activator\ActivatorSpells\IVHRSpell.cs" />
+    <Compile Include="External\Activator\ActivatorSpells\Smite.cs" />
+    <Compile Include="External\Activator\Items\IVHRItem.cs" />
+    <Compile Include="External\Activator\Items\_BOTRK.cs" />
+    <Compile Include="External\Activator\Items\_Cutlass.cs" />
+    <Compile Include="External\Activator\Items\_Youmuu.cs" />
+    <Compile Include="External\Cleanser\Cleanser.cs" />
+    <Compile Include="External\Cleanser\CleanserSpell.cs" />
+    <Compile Include="External\CustomAntigapcloser.cs" />
+    <Compile Include="External\DamagePrediction.cs" />
+    <Compile Include="External\EvadeHelper.cs" />
+    <Compile Include="External\Evade\Collision.cs" />
+    <Compile Include="External\Evade\EvadeSpellData.cs" />
+    <Compile Include="External\Evade\EvadeSpellDatabase.cs" />
+    <Compile Include="External\Evade\Geometry.cs" />
+    <Compile Include="External\Evade\Skillshot.cs" />
+    <Compile Include="External\Evade\SkillshotDetector.cs" />
+    <Compile Include="External\Evade\SpellData.cs" />
+    <Compile Include="External\Evade\SpellDatabase.cs" />
+    <Compile Include="External\ProfileSelector\DefaultProfiles\Asuna.cs" />
+    <Compile Include="External\ProfileSelector\DefaultProfiles\Eirik.cs" />
+    <Compile Include="External\ProfileSelector\DefaultProfiles\IDefaultProfile.cs" />
+    <Compile Include="External\ProfileSelector\ProfileSelector.cs" />
+    <Compile Include="External\ProfileSelector\ProfileValues\IValue.cs" />
+    <Compile Include="External\ProfileSelector\ProfileValues\ProfilerEnum.cs" />
+    <Compile Include="External\ProfileSelector\ProfileValues\ValueBool.cs" />
+    <Compile Include="External\ProfileSelector\Values\BoolValue.cs" />
+    <Compile Include="External\ProfileSelector\Values\IValue.cs" />
+    <Compile Include="External\ProfileSelector\Values\SelectorEnums.cs" />
+    <Compile Include="External\ProfileSelector\Values\SliderValue.cs" />
+    <Compile Include="External\Translation\Languages\Chinese.cs" />
+    <Compile Include="External\Translation\Languages\English.cs" />
+    <Compile Include="External\Translation\Languages\French_Test.cs" />
+    <Compile Include="External\Translation\Languages\German.cs" />
+    <Compile Include="External\Translation\Languages\Italian.cs" />
+    <Compile Include="External\Translation\Languages\IVHRLanguage.cs" />
+    <Compile Include="External\Translation\Languages\Korean.cs" />
+    <Compile Include="External\Translation\Languages\Portuguese.cs" />
+    <Compile Include="External\Translation\Languages\Spanish.cs" />
+    <Compile Include="External\Translation\TranslationInterface.cs" />
+    <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\ModuleHelpers\ModuleEnums.cs" />
+    <Compile Include="Modules\ModuleList\Condemn\AutoE.cs" />
+    <Compile Include="Modules\ModuleList\Condemn\CondemnJungleMobs.cs" />
+    <Compile Include="Modules\ModuleList\Condemn\EAfterAA.cs" />
+    <Compile Include="Modules\ModuleList\Condemn\EKS.cs" />
+    <Compile Include="Modules\ModuleList\Condemn\LowLifePeel.cs" />
+    <Compile Include="Modules\ModuleList\Misc\DisableMovement.cs" />
+    <Compile Include="Modules\ModuleList\Misc\Focus2WStacks.cs" />
+    <Compile Include="Modules\ModuleList\Misc\Reveal.cs" />
+    <Compile Include="Modules\ModuleList\Tumble\NoAAStealth.cs" />
+    <Compile Include="Modules\ModuleList\Tumble\QKS.cs" />
+    <Compile Include="Modules\ModuleList\Tumble\Walltumble.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skills\Condemn\CondemnExtensions.cs" />
+    <Compile Include="Skills\Condemn\CondemnLogic.cs" />
+    <Compile Include="Skills\Condemn\InterrupterGapcloser.cs" />
+    <Compile Include="Skills\Condemn\Methods\Marksman.cs" />
+    <Compile Include="Skills\Condemn\Methods\Shine.cs" />
+    <Compile Include="Skills\Condemn\Methods\VHReborn.cs" />
+    <Compile Include="Skills\Condemn\Methods\VHRevolution.cs" />
+    <Compile Include="Skills\Tumble\TumbleLogic.cs" />
+    <Compile Include="Skills\Tumble\TumbleMethods.cs" />
+    <Compile Include="Skills\Tumble\TumblePositioning.cs" />
+    <Compile Include="Skills\Tumble\VHRQ\VHRQLogic.cs" />
+    <Compile Include="Utility\DrawManager.cs" />
+    <Compile Include="Utility\Enumerations\Enums.cs" />
+    <Compile Include="Utility\Helpers\Extensions.cs" />
+    <Compile Include="Utility\Helpers\PlayerHelper.cs" />
+    <Compile Include="Utility\Helpers\StealthHelper.cs" />
+    <Compile Include="Utility\Helpers\VHRGeometry.cs" />
+    <Compile Include="Utility\MenuUtility\MenuExtensions.cs" />
+    <Compile Include="Utility\MenuUtility\MenuGenerator.cs" />
+    <Compile Include="Utility\Variables.cs" />
+    <Compile Include="Utility\VHRBootstrap.cs" />
+    <Compile Include="VHR.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
