@@ -126,12 +126,12 @@
 
         public bool HaveManaToHaras()
         {
-            return champion.Player.ManaPercent > KoreanUtils.GetParamSlider(champion.MainMenu, "manalimittoharas");
+            return champion.Player.ManaPercentage() > KoreanUtils.GetParamSlider(champion.MainMenu, "manalimittoharas");
         }
 
         public bool HaveManaToLaneclear()
         {
-            return champion.Player.ManaPercent > KoreanUtils.GetParamSlider(champion.MainMenu, "manalimittolaneclear");
+            return champion.Player.ManaPercentage() > KoreanUtils.GetParamSlider(champion.MainMenu, "manalimittolaneclear");
         }
 
         private void Orbwalking_AfterAttack(AttackableUnit unit, AttackableUnit target)
