@@ -1,0 +1,10 @@
+
+*.dll
+*.exe
+Hoola Lucian/.vs/Hoola Lucian/v16/.suo
+*.pdb
+Hoola Lucian/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttributes.cs
+*.cache
+*.suo
+*.cache
+*.config
