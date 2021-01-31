@@ -13,136 +13,121 @@ namespace xSaliceResurrected
 {
     public class PluginLoader
     {
-        private static bool _loaded;
+        public static bool loaded;
 
         public PluginLoader()
         {
-            if (!_loaded)
-            {
-                var webRequest = WebRequest.Create(@"https://github.com/Dorlander/RebornAIO/tree/basic/xSaliceResurrected/version.txt");
+            if (!loaded)
+            {  
 
-                using (var response = webRequest.GetResponse())
-                using (var content = response.GetResponseStream())
-                    if (content != null)
-                        using (var reader = new StreamReader(content))
-                        {
-                            var strContent = reader.ReadToEnd();
-
-                            Notifications.AddNotification("Latest Version: " + strContent, 10000);
-                            Notifications.AddNotification("Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version, 10000);
-                            if (strContent != Assembly.GetExecutingAssembly().GetName().Version.ToString())
-                                Notifications.AddNotification("Please Update Assembly!!!");
-
-                        }
-
-                switch (ObjectManager.Player.ChampionName.ToLower())
+            switch (ObjectManager.Player.ChampionName.ToLower())
                 {
                     case "ahri":
                         new Ahri();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "akali":
                         new Akali();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "anivia":
                         new Anivia();
                         break;
                     case "cassiopeia":
                         new Cassiopeia();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "ashe":
-                        _loaded = true;
+                        loaded = true;
                         new Ashe();
                         break;
                     case "azir":
                         new Azir();
-                        _loaded = true;;
+                        loaded = true;;
                         break;
                     case "chogath":
                         new Chogath();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "corki":
                         new Corki();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "ekko":
                         new Ekko();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "ezreal":
                         new Ezreal();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "fiora":
                         Game.PrintChat("xSalice Religion AIO: Lilith sux but so does this fiora so use trees");
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "irelia":
                         new Irelia();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "jinx":
                         new Jinx();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "karthus":
                         new Karthus();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "katarina":
                         new Katarina();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "kogmaw":
                         new KogMaw();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "lissandra":
                         new Lissandra();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "lucian":
                         new Lucian();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "jayce":
                         new Jayce();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "orianna":
                         new Orianna();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "rumble":
                         new Rumble();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "syndra":
                         new Syndra();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "vayne":
                         new Vayne();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "viktor":
                         new Viktor();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "vladimir":
                         new Vladimir();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "urgot":
                         new Urgot();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     case "zyra":
                         new Zyra();
-                        _loaded = true;
+                        loaded = true;
                         break;
                     /*
                     case "anivia":
@@ -193,4 +178,5 @@ namespace xSaliceResurrected
             }
         }
     }
+    
 }
