@@ -14,7 +14,7 @@
         public static ezEvadeSettings set = new ezEvadeSettings(2, true, true, true, false, false, true, 100, 100, 100,
             false);
 
-        private static Menu ezEvadeMenu => Menu.GetMenu("EzEvade", "ezEvade");
+        private static Menu ezEvadeMenu => Menu.GetMenu("ezEvade", "ezEvade");
 
         private static void Main(string[] args)
         {

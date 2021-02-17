@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C46DAF33-788C-4906-ACAD-25A5C356B619}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BadaoYasuo</RootNamespace>
+    <AssemblyName>BadaoYasuo</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="clipper_library">
+      <HintPath>..\LeagueSharp\Kernel\clipper_library.dll</HintPath>
+    </Reference>
+    <Reference Include="LeagueSharp">
+      <HintPath>..\LeagueSharp\Kernel\LeagueSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LeagueSharp.Common">
+      <HintPath>..\LeagueSharp\Kernel\LeagueSharp.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\LeagueSharp\Kernel\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuo.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoAssasinate.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoAuto.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoClear.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoCombo.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoConfig.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoDrawing.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoFlee.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoHarass.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoHelper.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoLastHit.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoSwitcher.cs" />
+    <Compile Include="BadaoChampion\BadaoYasuo\BadaoYasuoVariables.cs" />
+    <Compile Include="BadaoChecker.cs" />
+    <Compile Include="BadaoMainVariables.cs" />
+    <Compile Include="BadaoMath.cs" />
+    <Compile Include="Evade\Collision.cs" />
+    <Compile Include="Evade\Config.cs" />
+    <Compile Include="Evade\EarlyEvade.cs" />
+    <Compile Include="Evade\Geometry.cs" />
+    <Compile Include="Evade\Helpers.cs" />
+    <Compile Include="Evade\Program.cs" />
+    <Compile Include="Evade\Skillshot.cs" />
+    <Compile Include="Evade\SkillshotDetector.cs" />
+    <Compile Include="Evade\SpellData.cs" />
+    <Compile Include="Evade\SpellDatabase.cs" />
+    <Compile Include="Evade\TargetedSkillShots.cs" />
+    <Compile Include="Evade\Utils.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

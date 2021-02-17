@@ -56,7 +56,7 @@ namespace TeamStats
             Config.AddItem(new MenuItem("Enabled", "Enabled").SetValue(true));
             Config.AddItem(new MenuItem("draw", "Draw range")).SetValue(new Circle(false, Color.LightBlue));
             Config.AddToMainMenu();
-            //frame = loadFrame();
+            frame = loadFrame();
             gPower = loadText("", new ColorBGRA(Color.FromArgb(255, 34, 139, 34).ToArgb()));
             ePower = loadText("", new ColorBGRA(Color.FromArgb(255, 178, 34, 34).ToArgb()));
             aDmg = loadText("", new ColorBGRA(Color.White.ToArgb()));
@@ -296,9 +296,9 @@ namespace TeamStats
 
                 var load = new Render.Sprite(Resources.tsframe, new SharpDX.Vector2(0, 0))
                 {
-                    Color = new SharpDX.ColorBGRA(255f, 255f, 255f, 20f)
+                    Color = new ColorBGRA(255f, 255f, 255f, 20f)
                 };
-                load.Position = new SharpDX.Vector2((int)(Drawing.Width * 0.628), (int)(Drawing.Height - 102));
+                load.Position = new Vector2((int)(Drawing.Width * 0.628), (int)(Drawing.Height - 102));
                 load.Show();
                 load.Add(0);
                 return load;
