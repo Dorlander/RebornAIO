@@ -56,7 +56,7 @@ namespace TeamStats
             Config.AddItem(new MenuItem("Enabled", "Enabled").SetValue(true));
             Config.AddItem(new MenuItem("draw", "Draw range")).SetValue(new Circle(false, Color.LightBlue));
             Config.AddToMainMenu();
-            frame = loadFrame();
+           // frame = loadFrame();
             gPower = loadText("", new ColorBGRA(Color.FromArgb(255, 34, 139, 34).ToArgb()));
             ePower = loadText("", new ColorBGRA(Color.FromArgb(255, 178, 34, 34).ToArgb()));
             aDmg = loadText("", new ColorBGRA(Color.White.ToArgb()));
