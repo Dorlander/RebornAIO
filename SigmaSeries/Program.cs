@@ -1,36 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using LeagueSharp;
 using LeagueSharp.Common;
+using Version = System.Version;
 
 namespace SigmaSeries
 {
     // All Credits to H3H3 for the loader.
     internal class Program
     {
+        public static Version Version;
         static void Main(string[] args)
         {
+            Version = Assembly.GetExecutingAssembly().GetName().Version;
             CustomEvents.Game.OnGameLoad += a =>
             {
-                try
-                {
-                    var type = Type.GetType("SigmaSeries.Plugins." + ObjectManager.Player.ChampionName);
-
-                    if (type != null)
-                    {
-                        Activator.CreateInstance(type);
-                        return;
-                    }
-
-                    Game.PrintChat(ObjectManager.Player.ChampionName + " Not Supported");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                new PluginLoader();
             };
         }
     }

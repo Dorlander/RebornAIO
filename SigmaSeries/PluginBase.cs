@@ -43,7 +43,7 @@ namespace SigmaSeries
 
         public void castItems(Obj_AI_Base target, bool isMinion = false)
         {
-            return;
+            
             if (isMinion)
             {
                 if (Player.Distance(target) <= Hydra.Range && Config.Item("hdr").GetValue<bool>())
@@ -65,10 +65,7 @@ namespace SigmaSeries
                 {
                     Tiamat.Cast(target);
                 }
-                if (target.IsValidTarget(DFG.Range) && Config.Item("dfg").GetValue<bool>())
-                {
-                    DFG.Cast(target);
-                }
+                
             }
         }
 
@@ -92,7 +89,7 @@ namespace SigmaSeries
 
             Hydra = new Items.Item(3074, 175f);
             Tiamat = new Items.Item(3077, 175f);
-            DFG = new Items.Item(3128, 750f);
+          
 
 
             IgniteSlot = Player.GetSpellSlot("SummonerDot");

@@ -70,15 +70,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PluginLoader.cs" />
     <Compile Include="PluginBase.cs" />
     <Compile Include="Plugins\Cassiopeia.cs" />
     <Compile Include="Plugins\Darius.cs" />
-    <Compile Include="Plugins\FiddleSticks.cs" />
     <Compile Include="Plugins\Fizz.cs" />
     <Compile Include="Plugins\Hecarim.cs" />
     <Compile Include="Plugins\Mordekaiser.cs" />
     <Compile Include="Plugins\Rengar.cs" />
-    <Compile Include="Plugins\Rumble.cs" />
     <Compile Include="Plugins\Singed.cs" />
     <Compile Include="Plugins\Tryndamere.cs" />
     <Compile Include="Plugins\Varus.cs" />
