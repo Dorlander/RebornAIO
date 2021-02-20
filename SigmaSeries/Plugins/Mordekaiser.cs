@@ -57,7 +57,7 @@ namespace SigmaSeries.Plugins
         public override void OnUpdate(EventArgs args)
         {
             packetCast = Config.Item("packetCast").GetValue<bool>();
-            var target = SimpleTs.GetTarget(R.Range, SimpleTs.DamageType.Magical);
+            var target = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Magical);
             if ((Config.Item("forceR").GetValue<KeyBind>().Active) && target != null)
             {
                 R.CastOnUnit(target, true);
@@ -91,7 +91,7 @@ namespace SigmaSeries.Plugins
             var useE = Config.Item("UseECombo").GetValue<bool>();
             var useR = Config.Item("UseRCombo").GetValue<bool>();
             var useRCon = Config.Item("controlMinion").GetValue<bool>();
-            var Target = SimpleTs.GetTarget(1000, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(1000, TargetSelector.DamageType.Magical);
             if (Target != null)
             {
                 if (Player.HasBuff("MordekaiserCOTGSelf") && useRCon)
@@ -132,7 +132,7 @@ namespace SigmaSeries.Plugins
             var useQ = Config.Item("UseQHarass").GetValue<bool>();
             var useW = Config.Item("UseWHarass").GetValue<bool>();
             var useE = Config.Item("UseEHarass").GetValue<bool>();
-            var Target = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (Target != null)
             {
                 if (Orbwalking.InAutoAttackRange(Target) && useQ && Q.IsReady())

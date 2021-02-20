@@ -65,7 +65,7 @@ namespace SigmaSeries.Plugins
 
         public override void OnUpdate(EventArgs args)
         {
-                var target = SimpleTs.GetTarget(R.Range, SimpleTs.DamageType.Magical);
+                var target = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Magical);
             if ((Config.Item("forceR").GetValue<KeyBind>().Active) && target != null)
             {
                 R.Cast(target, true);
@@ -99,7 +99,7 @@ namespace SigmaSeries.Plugins
             var useW = Config.Item("UseWCombo").GetValue<bool>();
             var useE = Config.Item("UseECombo").GetValue<bool>();
             var useR = Config.Item("UseRCombo").GetValue<bool>();
-            var target = SimpleTs.GetTarget(800, SimpleTs.DamageType.Magical);
+            var target = TargetSelector.GetTarget(800, TargetSelector.DamageType.Magical);
             if (target != null)
             {
                 if (target.IsValidTarget(Q.Range) && useQ && Q.IsReady())
@@ -138,7 +138,7 @@ namespace SigmaSeries.Plugins
             var useQ = Config.Item("UseQHarass").GetValue<bool>();
             var useW = Config.Item("UseWHarass").GetValue<bool>();
             var useE = Config.Item("UseEHarass").GetValue<bool>();
-            var target = SimpleTs.GetTarget(800, SimpleTs.DamageType.Magical);
+            var target = TargetSelector.GetTarget(800, TargetSelector.DamageType.Magical);
 
             if (target != null)
             {

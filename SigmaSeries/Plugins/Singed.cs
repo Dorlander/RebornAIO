@@ -66,7 +66,7 @@ namespace SigmaSeries.Plugins
                 var useW = Config.Item("UseWCombo").GetValue<bool>();
                 var useE = Config.Item("UseECombo").GetValue<bool>();
                 var delay = Config.Item("delayms").GetValue<Slider>().Value;
-                var eTarget = SimpleTs.GetTarget(500f, SimpleTs.DamageType.Magical);
+                var eTarget = TargetSelector.GetTarget(500f, TargetSelector.DamageType.Magical);
                 if (eTarget != null)
                 {
                     if (Q.IsReady() && useQ)
@@ -102,7 +102,7 @@ namespace SigmaSeries.Plugins
                 var useW = Config.Item("UseWHarass").GetValue<bool>();
                 var useE = Config.Item("UseEHarass").GetValue<bool>();
                 var delay = Config.Item("delayms").GetValue<Slider>().Value;
-                var eTarget = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+                var eTarget = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
                 if (eTarget != null)
                 {
                     if (Q.IsReady() && useQ)

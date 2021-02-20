@@ -113,7 +113,7 @@ namespace SigmaSeries.Plugins
             var useE = Config.Item("UseECombo").GetValue<bool>();
             var useR = Config.Item("UseRCombo").GetValue<bool>();
             var e2 = Config.Item("eRangeCheck").GetValue<bool>();
-            var Target = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (Target != null)
             {
                 if (useR)
@@ -149,7 +149,7 @@ namespace SigmaSeries.Plugins
             var useW = Config.Item("UseWHarass").GetValue<bool>();
             var useE = Config.Item("UseEHarass").GetValue<bool>();
             var e2 = Config.Item("eRangeCheck").GetValue<bool>();
-            var Target = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (Target != null)
             {
                 if (Player.Distance(Target) < E.Range && useE && E.IsReady() && !e2 ||

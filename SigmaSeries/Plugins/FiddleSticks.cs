@@ -20,8 +20,8 @@ namespace SigmaSeries.Plugins
             E = new Spell(SpellSlot.E, 750);
             R = new Spell(SpellSlot.R, 0);
 
-            LeagueSharp.Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
-            Game.OnGameSendPacket += Game_OnGameSendPacket;
+            Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
+           // Game.OnUpdate += Game_OnGameSendPacket;
         }
         public static int count;
         public static float newTime;
@@ -119,7 +119,7 @@ namespace SigmaSeries.Plugins
             var useQ = Config.Item("UseQCombo").GetValue<bool>();
             var useW = Config.Item("UseWCombo").GetValue<bool>();
             var useE = Config.Item("UseECombo").GetValue<bool>();
-            var Target = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (Target != null)
             {
                 if (!Player.HasBuff("Drain") && newTime < Game.Time)
@@ -147,7 +147,7 @@ namespace SigmaSeries.Plugins
             var useQ = Config.Item("UseQHarass").GetValue<bool>();
             var useW = Config.Item("UseWHarass").GetValue<bool>();
             var useE = Config.Item("UseEHarass").GetValue<bool>();
-            var Target = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (Target != null)
             {
                 if (!Player.HasBuff("Drain") && newTime < Game.Time)

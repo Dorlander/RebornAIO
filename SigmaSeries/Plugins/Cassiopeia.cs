@@ -67,7 +67,7 @@ namespace SigmaSeries.Plugins
                 var useQCombo = Config.Item("UseQCombo").GetValue<bool>();
                 var useWCombo = Config.Item("UseWCombo").GetValue<bool>();
                 var useECombo = Config.Item("UseECombo").GetValue<bool>();
-                var eTarget = SimpleTs.GetTarget(1000f, SimpleTs.DamageType.Magical);
+                var eTarget = TargetSelector.GetTarget(1000f, TargetSelector.DamageType.Magical);
                 if (eTarget != null)
                 {
                     if (Player.Distance(eTarget) < E.Range && E.IsReady() && useECombo)
@@ -97,7 +97,7 @@ namespace SigmaSeries.Plugins
                 var useQ = Config.Item("UseQHarass").GetValue<bool>();
                 var useW = Config.Item("UseWHarass").GetValue<bool>();
                 var useE = Config.Item("UseEHarass").GetValue<bool>();
-                var eTarget = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+                var eTarget = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
                 if (eTarget.IsValidTarget(E.Range) && E.IsReady() && useE)
                 {
                     if (eTarget.HasBuffOfType(BuffType.Poison) || E.GetDamage(eTarget) > eTarget.Health)

@@ -10,8 +10,8 @@ using Version = System.Version;
 
 
 namespace SigmaSeries.Plugins
-{
-    public class Rumble : PluginBase
+{ }
+  /*  public class Rumble : PluginBase
     {
         public Rumble()
             : base(new Version(0, 1, 1))
@@ -71,7 +71,7 @@ namespace SigmaSeries.Plugins
         {
             if (Config.Item("castR").GetValue<KeyBind>().Active && R.IsReady())
             {
-                var rTarget = SimpleTs.GetTarget(R.Range, SimpleTs.DamageType.Magical);
+                var rTarget = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Magical);
                 CastR(rTarget);
             }
             packetCast = Config.Item("packetCast").GetValue<bool>();
@@ -149,7 +149,7 @@ namespace SigmaSeries.Plugins
             var useQ = Config.Item("UseQCombo").GetValue<bool>();
             var useW = Config.Item("UseWCombo").GetValue<bool>();
             var useE = Config.Item("UseECombo").GetValue<bool>();
-            var rTarget = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var rTarget = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (rTarget != null)
             {
                 if (Player.Distance(rTarget) < Orbwalking.GetRealAutoAttackRange(Player) && W.IsReady() && willOverLoad(false) == false && useQ)
@@ -174,7 +174,7 @@ namespace SigmaSeries.Plugins
             var useQ = Config.Item("UseQHarass").GetValue<bool>();
             var useW = Config.Item("UseWHarass").GetValue<bool>();
             var useE = Config.Item("UseEHarass").GetValue<bool>();
-            var rTarget = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var rTarget = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (rTarget != null)
             {
                 if (Player.Distance(rTarget) < Orbwalking.GetRealAutoAttackRange(Player) && W.IsReady() && willOverLoad(false) == false && useQ)
@@ -318,7 +318,7 @@ namespace SigmaSeries.Plugins
                 var count = 0;
                 foreach (var champs in getMoarChamps)
                 {
-                    count = (int)SimpleTs.GetPriority(enemy);
+                    count = (int)TargetSelector.GetPriority(enemy);
                 }
                 if (maxCount < count || maxCount == -1)
                 {
@@ -329,12 +329,12 @@ namespace SigmaSeries.Plugins
 
             if (bestChamp == null)
             {
-                castR2(rTarget.Position, Prediction.GetPrediction(rTarget, 2f).CastPosition);
+                //castR2(rTarget.Position, Prediction.GetPrediction(rTarget, 2f).CastPosition);
             }
 
             if (bestChamp != null)
             {
-                castR2(R.GetPrediction(rTarget).CastPosition, R.GetPrediction(bestChamp).CastPosition);
+               // castR2(R.GetPrediction(rTarget).CastPosition, R.GetPrediction(bestChamp).CastPosition);
             }
             
         }
@@ -362,4 +362,4 @@ namespace SigmaSeries.Plugins
             return true;
         }
     }
-}
+}*/

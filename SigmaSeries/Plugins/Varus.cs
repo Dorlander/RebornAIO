@@ -73,7 +73,7 @@ namespace SigmaSeries.Plugins
         public override void OnUpdate(EventArgs args)
         {
             packetCast = Config.Item("packetCast").GetValue<bool>();
-            var target = SimpleTs.GetTarget(R.Range, SimpleTs.DamageType.Magical);
+            var target = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Magical);
             if ((Config.Item("forceR").GetValue<KeyBind>().Active) && target != null)
             {
                 R.Cast(target, true);
@@ -109,7 +109,7 @@ namespace SigmaSeries.Plugins
                 {
                     hero.Add(new VarusWHero {netID = enemy.NetworkId, stacks = 0});
                 }
-                else if (enemy != null && enemy.IsValidTarget() && !enemy.HasBuff("varuswdebuff", true))
+                else if (enemy != null && enemy.IsValidTarget() && !enemy.HasBuffIn("varuswdebuff", 0f, true))
                 {
                     hero[indx].stacks = 0;
                 }
@@ -119,7 +119,7 @@ namespace SigmaSeries.Plugins
         private void Combo()
         {
             
-            var Target = SimpleTs.GetTarget(1600, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(1600, TargetSelector.DamageType.Magical);
             if (Q.IsCharging)
             {
                 Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
@@ -165,7 +165,7 @@ namespace SigmaSeries.Plugins
         {
             var useQ = Config.Item("UseQHarass").GetValue<bool>();
             var useE = Config.Item("UseEHarass").GetValue<bool>();
-            var Target = SimpleTs.GetTarget(1600, SimpleTs.DamageType.Magical);
+            var Target = TargetSelector.GetTarget(1600, TargetSelector.DamageType.Magical);
             if (Target != null )
             {
                 if (Q.IsReady() && useQ)

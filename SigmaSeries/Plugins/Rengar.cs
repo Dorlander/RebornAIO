@@ -112,7 +112,7 @@ namespace SigmaSeries.Plugins
             var useW = Config.Item("UseWHarass").GetValue<bool>();
             var useE = Config.Item("UseEHarass").GetValue<bool>();
             var stackPrior = Config.Item("stackPriority").GetValue<StringList>().SelectedIndex;
-            var eTarget = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Magical);
+            var eTarget = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
             if (eTarget != null)
             {
                 if (E.IsReady())
@@ -146,8 +146,8 @@ namespace SigmaSeries.Plugins
             var useW = Config.Item("UseWCombo").GetValue<bool>();
             var useE = Config.Item("UseECombo").GetValue<bool>();
             var stackPrior = Config.Item("stackPriority").GetValue<StringList>().SelectedIndex;
-            var eTarget = SimpleTs.GetTarget(E.Range, SimpleTs.DamageType.Physical);
-            var aaTarget = SimpleTs.GetTarget(Orbwalking.GetRealAutoAttackRange(Player) + 200, SimpleTs.DamageType.Physical);
+            var eTarget = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Physical);
+            var aaTarget = TargetSelector.GetTarget(Orbwalking.GetRealAutoAttackRange(Player) + 200, TargetSelector.DamageType.Physical);
 
             
             if (eTarget != null)
