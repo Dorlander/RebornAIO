@@ -205,7 +205,7 @@ namespace AutoJungle
     {
         Defending,
         Pushing,
-        Grouping,
+       // Grouping,
         Warding,
         Jungling,
         Ganking,

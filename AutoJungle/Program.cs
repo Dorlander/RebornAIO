@@ -228,7 +228,7 @@ namespace AutoJungle
             {
                 _GameInfo.afk++;
             }
-            if (_GameInfo.afk > 15 && !player.InFountain())
+            if (_GameInfo.afk > 10 && !player.InFountain())
             {
                 player.Spellbook.CastSpell(SpellSlot.Recall);
                 return true;
@@ -411,8 +411,8 @@ namespace AutoJungle
 
         private static void MoveToPos()
         {
-            if ((_GameInfo.GameState != State.Positioning && _GameInfo.GameState != State.Ganking &&
-                 _GameInfo.GameState != State.Retreat && _GameInfo.GameState != State.Grouping) ||
+            if (_GameInfo.GameState != State.Positioning && _GameInfo.GameState != State.Ganking &&
+                 _GameInfo.GameState != State.Retreat && 
                 !_GameInfo.MoveTo.IsValid())
             {
                 return;
@@ -773,11 +773,11 @@ namespace AutoJungle
                     if (
                         ObjectManager.Get<Obj_AI_Turret>()
                             .FirstOrDefault(t => t.Distance(_GameInfo.MoveTo) < 2000 && t.IsAlly) != null &&
-                        (_GameInfo.GameState == State.Grouping || _GameInfo.GameState == State.Defending))
+                        (_GameInfo.GameState == State.Defending))
                     {
                         tempstate = State.Defending;
                     }
-                    else if (_GameInfo.GameState != State.Grouping && _GameInfo.GameState != State.Retreat &&
+                    else if (_GameInfo.GameState != State.Retreat &&
                              _GameInfo.GameState != State.Jungling)
                     {
                         tempstate = State.Pushing;
@@ -785,9 +785,9 @@ namespace AutoJungle
                 }
                 if (tempstate == State.Null &&
                     (_GameInfo.MoveTo.Distance(player.Position) > GameInfo.ChampionRange || _GameInfo.GroupWithoutTarget) &&
-                    (_GameInfo.GameState == State.Positioning || _GameInfo.GameState == State.Grouping))
+                    (_GameInfo.GameState == State.Positioning))
                 {
-                    tempstate = State.Grouping;
+                    tempstate = State.Pushing;
                 }
             }
             if (tempstate == State.Null && _GameInfo.EnemiesAround == 0 &&
@@ -1209,9 +1209,9 @@ namespace AutoJungle
                 case State.Objective:
                     return _GameInfo.MoveTo;
                     break;
-                case State.Grouping:
-                    return _GameInfo.MoveTo;
-                    break;
+                //case State.Grouping:
+                //    return _GameInfo.MoveTo;
+                //    break;
                 case State.Defending:
                     return Vector3.Zero;
                     break;
