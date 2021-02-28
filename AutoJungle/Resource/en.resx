@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AutoClose" xml:space="preserve">
+    <value>Close at the end</value>
+  </data>
+  <data name="AutoJungle" xml:space="preserve">
+    <value>S7-AutoJungle</value>
+  </data>
+  <data name="AutoJungleInfo2" xml:space="preserve">
+    <value>Soresu | Updated by LOVETAIWAN v</value>
+  </data>
+  <data name="AutoJungleInfoReload" xml:space="preserve">
+    <value>You have to reload the assembly (F5)!</value>
+  </data>
+  <data name="ChampNotSupported" xml:space="preserve">
+    <value>This champion is not supported!</value>
+  </data>
+  <data name="ComboSmite" xml:space="preserve">
+    <value>Use Smite</value>
+  </data>
+  <data name="debug" xml:space="preserve">
+    <value>Print to console</value>
+  </data>
+  <data name="dsettings" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="EnemyJungle" xml:space="preserve">
+    <value>Go into enemy jungle</value>
+  </data>
+  <data name="GankFrequency" xml:space="preserve">
+    <value>Ganking frequency</value>
+  </data>
+  <data name="GankLevel" xml:space="preserve">
+    <value>Min level to gank</value>
+  </data>
+  <data name="GankRange" xml:space="preserve">
+    <value>Searching range</value>
+  </data>
+  <data name="gsettings" xml:space="preserve">
+    <value>Gank settings</value>
+  </data>
+  <data name="HealtToBack" xml:space="preserve">
+    <value>Recall on HP(%)</value>
+  </data>
+  <data name="jsettings" xml:space="preserve">
+    <value>Jungle settings</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lsetting" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MapNotSupported" xml:space="preserve">
+    <value>This map is not supported!</value>
+  </data>
+  <data name="NoSmite" xml:space="preserve">
+    <value>You don't have smite!</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Show GameState</value>
+  </data>
+  <data name="supported" xml:space="preserve">
+    <value>Supported champions</value>
+  </data>
+  <data name="supportedEvelyn" xml:space="preserve">
+    <value>Evelynn</value>
+  </data>
+  <data name="supportedJax" xml:space="preserve">
+    <value>Jax</value>
+  </data>
+  <data name="supportedNocturne" xml:space="preserve">
+    <value>Nocturne</value>
+  </data>
+  <data name="supportedShyvana" xml:space="preserve">
+    <value>Shyvana</value>
+  </data>
+  <data name="supportedTryndamere" xml:space="preserve">
+    <value>Tryndamere</value>
+  </data>
+  <data name="supportedVolibear" xml:space="preserve">
+    <value>Volibear</value>
+  </data>
+  <data name="supportedWarwick" xml:space="preserve">
+    <value>Warwick</value>
+  </data>
+  <data name="supportedXinZhao" xml:space="preserve">
+    <value>Xin Zhao</value>
+  </data>
+  <data name="supportedYi" xml:space="preserve">
+    <value>Master Yi</value>
+  </data>
+  <data name="supportedOlaf" xml:space="preserve">
+    <value>Olaf</value>
+  </data>
+  <data name="supportedNunu" xml:space="preserve">
+    <value>Nunu</value>
+  </data>
+  <data name="supportedUdyr" xml:space="preserve">
+    <value>Udyr</value>
+  </data>
+  <data name="UseTrinket" xml:space="preserve">
+    <value>Use Trinket</value>
+  </data>
+  <data name="HealthToPotion" xml:space="preserve">
+    <value>HP% to use potion</value>
+  </data>
+  <data name="sssettings" xml:space="preserve">
+    <value>Summoner Spells</value>
+  </data>
+  <data name="UseBarrier" xml:space="preserve">
+    <value>Use Barrier</value>
+  </data>
+  <data name="UseHeal" xml:space="preserve">
+    <value>Use Heal</value>
+  </data>
+  <data name="UseIgnite" xml:space="preserve">
+    <value>Use Ignite</value>
+  </data>
+  <data name="UseIgniteOpt" xml:space="preserve">
+    <value>Change focus if ignite kills</value>
+  </data>
+  <data name="supportedKogMaw" xml:space="preserve">
+    <value>KogMaw</value>
+  </data>
+  <data name="WaitAtLvlTWO" xml:space="preserve">
+    <value>Wait for smite at level 2(HP 55% Lower)</value>
+  </data>
+  <data name="supportedKayle" xml:space="preserve">
+  <value>Kayle</value>
+  </data>
+</root>
